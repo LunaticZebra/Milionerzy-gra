@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-
+using System;
 
 public class QuestionsManager : MonoBehaviour
 {
@@ -23,15 +23,22 @@ public class QuestionsManager : MonoBehaviour
 
     public Button[] answerButtons;
     public TextMeshProUGUI questionText;
+    public Image arrow;
 
     private Question[] questionsDatabase;
     private Question currentQuestion;
     private int currentQuestionNumber = 0;
 
+    public GameStateManager gameStateManager;
+
     public void Start()
     {
         initialzeQuestions();
         getNextQuestion();
+    }
+    public int CurrentQuestionIndx()
+    {
+        return currentQuestionNumber;
     }
     private void getNextQuestion()
     {
@@ -46,7 +53,14 @@ public class QuestionsManager : MonoBehaviour
 
     public void CheckAnswer(int buttonNumber)
     {
-        Image buttonImage = answerButtons[buttonNumber].gameObject.GetComponent<Image>();
+        StartCoroutine(CheckButtons(buttonNumber));
+    }
+    IEnumerator CheckButtons(int buttonNumber)
+    {
+        Debug.Log("BUtton Number" + buttonNumber);
+        bool lost = false;
+        Image buttonImage = answerButtons[buttonNumber - 1].gameObject.GetComponent<Image>();
+        Cursor.lockState = CursorLockMode.Locked;
         Color newColor;
         Color oldColor = buttonImage.color;
 
@@ -57,17 +71,23 @@ public class QuestionsManager : MonoBehaviour
         else
         {
             newColor = Color.red;
+            lost = true;
         }
         buttonImage.color = newColor;
-        StartCoroutine(GiveSomeTime());
-        buttonImage.color = oldColor;
+        yield return new WaitForSeconds(1.5f);
+        Cursor.lockState = CursorLockMode.None;
+        if (lost)
+        {
+            gameStateManager.LostGame();
+        }
+        else
+        {
+            buttonImage.color = oldColor;
+            gameStateManager.IncreaseScore();
+            gameStateManager.IncrementQuestionIndx();
+            getNextQuestion();
+        }
 
-        getNextQuestion();
-    }
-
-    IEnumerator GiveSomeTime()
-    {
-        yield return new WaitForSeconds(3);
     }
 
     private void initialzeQuestions()
