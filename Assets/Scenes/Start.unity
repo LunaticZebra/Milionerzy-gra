@@ -561,6 +561,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: StartScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 3067908089096294765, guid: 71deb4d073480b14b9f6468e0df17313, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3067908089096294767, guid: 71deb4d073480b14b9f6468e0df17313, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -660,6 +664,22 @@ PrefabInstance:
     - target: {fileID: 3067908090548287741, guid: 71deb4d073480b14b9f6468e0df17313, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041255022161849630, guid: 71deb4d073480b14b9f6468e0df17313, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 221.2078
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041255022161849630, guid: 71deb4d073480b14b9f6468e0df17313, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 182.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041255022161849630, guid: 71deb4d073480b14b9f6468e0df17313, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.000013351
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041255022161849630, guid: 71deb4d073480b14b9f6468e0df17313, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5459749513214543846, guid: 71deb4d073480b14b9f6468e0df17313, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
